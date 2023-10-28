@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://wn40jxcmnkhb"]
+
+[ext_resource type="Texture2D" uid="uid://66w2jtrgfphv" path="res://Img/Sans titre.png" id="1_02ygx"]
+[ext_resource type="Script" path="res://main_game.gd" id="1_okfmd"]
+[ext_resource type="Texture2D" uid="uid://dn6wovne7sioc" path="res://Img/Cookie.png" id="2_k0fy7"]
+[ext_resource type="Texture2D" uid="uid://cb3k6mo0qecq7" path="res://Img/Cookie-Pressed.png" id="3_aqkyh"]
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_okfmd")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="PointsPerSeconds" type="Timer" parent="Components"]
+autostart = true
+
+[node name="UI" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="UI"]
+position = Vector2(200, 360)
+scale = Vector2(1, 1)
+texture = ExtResource("1_02ygx")
+
+[node name="Cookie_Button" type="TextureButton" parent="UI"]
+offset_left = 102.0
+offset_top = 483.0
+offset_right = 302.0
+offset_bottom = 683.0
+texture_normal = ExtResource("2_k0fy7")
+texture_pressed = ExtResource("3_aqkyh")
+
+[node name="PointsSeconds" type="Label" parent="UI"]
+offset_left = 11.0
+offset_top = 660.0
+offset_right = 106.0
+offset_bottom = 717.0
+theme_override_font_sizes/font_size = 39
+text = "0
+"
+
+[node name="Points" type="Label" parent="UI"]
+offset_left = 181.0
+offset_top = 3.0
+offset_right = 276.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 39
+text = "0
+"
+
+[connection signal="timeout" from="Components/PointsPerSeconds" to="." method="_on_points_per_seconds_timeout"]
+[connection signal="pressed" from="UI/Cookie_Button" to="." method="_on_cookie_button_pressed"]
